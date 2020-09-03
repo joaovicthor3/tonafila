@@ -25,6 +25,15 @@ class App extends React.Component {
     });
     this.apiPost(product);
   }
+  deleteProduct = (id) => {
+    // console.log(id);
+    let products = this.state.products.filter(product => {
+      return product.id !== id
+    });
+    this.setState({
+      products: products
+    });
+  }
 
   componentDidMount = () => {
     this.getProductPost();
@@ -64,10 +73,6 @@ class App extends React.Component {
       });
   };
 
-
-
-
-
   render() {
 
     //JSX
@@ -75,7 +80,7 @@ class App extends React.Component {
       <div className="App">
         <h2>Bem-vindo ao To na Fila!</h2>
         <AddProduct addProduct={this.addProduct}/>
-        <Products products={this.state.products}/>
+        <Products products={this.state.products} deleteProduct={this.deleteProduct}/>
       </div>
     );
   }

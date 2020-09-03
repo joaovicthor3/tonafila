@@ -51,31 +51,31 @@ class AddProduct extends Component {
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="name">Nome:</label>
           <input
-          type="text"
-          id="name"
-          onChange={this.handleChange}
-          value={this.state.name}
+            type="text"
+            id="name"
+            onChange={this.handleChange}
+            value={this.state.name}
           /><br />
           <label htmlFor="name">Tipo:</label>
           <input
-          type="text"
-          id="type"
-          onChange={this.handleChange}
-          value={this.state.type}
+            type="text"
+            id="type"
+            onChange={this.handleChange}
+            value={this.state.type}
           /><br />
           <label htmlFor="name">Quantidade:</label>
           <input
-          type="text"
-          id="amount"
-          onChange={this.handleChange}
-          value={this.state.amount}
+            type="text"
+            id="amount"
+            onChange={this.handleChange}
+            value={this.state.amount}
            /><br />
           <label htmlFor="name">Preço:</label>
           <input
-          type="text"
-          id="price"
-          onChange={this.handleChange}
-          value={this.state.price}
+            type="text"
+            id="price"
+            onChange={this.handleChange}
+            value={this.state.price}
            /><br />
           <button>Submit</button>
         </form>

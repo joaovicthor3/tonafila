@@ -1,7 +1,7 @@
 import React from 'react'
 
 //UI, Stateless component, to display data
-const Products = ({products}) => {
+const Products = ({products, deleteProduct}) => {
   if(!products.length) return null;
   else return (
     <div className="product-list">
@@ -13,6 +13,8 @@ const Products = ({products}) => {
               <h4>Type: { product.type }</h4>
               <h5>Amount: { product.amount }</h5>
               <h6>Price: { product.price }</h6>
+              <button onClick={() => {deleteProduct(product.id)}}>Deletar Produto</button>
+              <hr />
             </div>
           )
         })
