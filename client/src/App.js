@@ -2,6 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import AddProduct from './AddProduct';
 import Products from './Products';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import About from './components/About';
+import Contact from './components/Contact';
+import { BrowserRouter, Route } from 'react-router-dom';
 // import logo from './logo.svg';
 // import './App.css';
 import './App.css';
@@ -18,7 +23,7 @@ class App extends React.Component {
   };
 
   addProduct = (product) => {
-    product.id = Math.random();
+    product.id = Math.floor(Math.random()*500);
     let products = [...this.state.products, product];
     this.setState({
       products: products
@@ -26,10 +31,11 @@ class App extends React.Component {
     this.apiPost(product);
   }
   deleteProduct = (id) => {
-    // console.log(id);
     let products = this.state.products.filter(product => {
-      return product.id !== id
+      //console.log(products1.prototype.indexOf(product))
+      return product.id !== id;
     });
+    console.log(this.state.products);
     this.setState({
       products: products
     });
@@ -77,11 +83,17 @@ class App extends React.Component {
 
     //JSX
     return(
-      <div className="App">
-        <h2>Bem-vindo ao To na Fila!</h2>
-        <AddProduct addProduct={this.addProduct}/>
-        <Products products={this.state.products} deleteProduct={this.deleteProduct}/>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <h2>Bem-vindo ao To na Fila!</h2>
+          <Navbar />
+          <Route exact path='/' component={Home} />
+          <Route path='/about' component={About} />
+          <Route path='/contact' component={Contact} />
+          <AddProduct addProduct={this.addProduct}/>
+          <Products products={this.state.products} deleteProduct={this.deleteProduct}/>
+        </div>
+      </BrowserRouter>
     );
   }
 }

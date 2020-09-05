@@ -6,9 +6,10 @@ const Products = ({products, deleteProduct}) => {
   else return (
     <div className="product-list">
       {
-        products.map((product, index) => {
+        products.map(product => {
+          console.log('product.id: ', product.id);
           return (
-            <div className="product" key={index}>
+            <div className="product" key={product.id}>
               <h3>Name: { product.name }</h3>
               <h4>Type: { product.type }</h4>
               <h5>Amount: { product.amount }</h5>
