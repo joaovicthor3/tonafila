@@ -10,6 +10,13 @@ router.get('/products', function(req, res, next){
 
 });
 
+router.get('/products/:id', function(req, res, next){
+  Product.findOne({ id : req.params.id }).then(function(products){
+    res.send(products);
+  });
+
+});
+
 // add a new ninja to the db
 router.post('/products', function(req, res, next){
     Product.create(req.body).then(function(product){
@@ -20,19 +27,25 @@ router.post('/products', function(req, res, next){
 
 // update a ninja in the db
 router.put('/products/:id', function(req, res, next){
-  Product.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
-      Product.findOne({_id: req.params.id}).then(function(product){
+  Product.findByIdAndUpdate({id: req.params.id}, req.body).then(function(){
+      Product.findOne({id: req.params.id}).then(function(product){
           res.send(product);
       });
   }).catch(next);
 });
 
 // delete a ninja from the db
+// router.delete('/products/:id', function(req, res, next){
+//   console.log('help');
+//   Product.findByIdAndRemove({ id: req.params.id }).then(function(product){
+//       res.send(product);
+//   }).catch(next);
+// });
+
 router.delete('/products/:id', function(req, res, next){
-  Product.findByIdAndRemove({_id: req.params.id}).then(function(product){
+  console.log('help');
+  Product.findOneAndDelete({ id: req.params.id }).then(function(product){
       res.send(product);
   }).catch(next);
 });
-
-
 module.exports = router;
