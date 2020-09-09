@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Products from '../Products';
 import AddProduct from '../AddProduct';
-
+import { connect } from 'react-redux';
 
 class Home extends Component {
-  state = {
-    products: []
-  }
-  componentDidMount = () => {
-    this.getProductPost();
-  };
+
+
+
   addProduct = (product) => {
     product.id = Math.floor(Math.random()*500);
     let products = [...this.state.products, product];
@@ -72,7 +69,7 @@ class Home extends Component {
     return (
       <div className="container">
         <h4 className="center">Home</h4>
-        <Products products={this.state.products} deleteProduct={this.deleteProduct}/>
+        <Products products={this.props.posts} deleteProduct={this.deleteProduct}/>
         <AddProduct addProduct={this.addProduct}/>
       </div>
     );
@@ -80,4 +77,11 @@ class Home extends Component {
 
 }
 
-export default Home
+const mapStateToProps = (state) => {
+  return {
+    ...state,
+    posts: state.posts
+  }
+}
+
+export default connect(mapStateToProps)(Home)
