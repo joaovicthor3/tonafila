@@ -12,7 +12,7 @@ class Dashboard extends Component {
 
     render(){
         const { products } = this.props;
-        console.log(products)
+        //console.log(products)
         return (
             <div className="dashboard container">
                 <div className="row">

@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const initState = {
+    product: null,
     products: [
         {id: '1', name: 'Heineken', type: 'pale lager beer ', amount: 300, price: 300, description: 'run and get it!'},
         {id: '2', name: 'Budweiser', type: 'american lager beer', amount: 400, price: 275, description: 'the colder the better'},
@@ -9,7 +10,7 @@ const initState = {
 }
 
 const productReducer = (state = initState, action) => {
-    console.log('action.payload: ', action.payload);
+    //console.log('action.payload: ', action.payload);
     switch (action.type) {
         case 'CREATE_PRODUCT':
             return {
@@ -21,7 +22,11 @@ const productReducer = (state = initState, action) => {
                 ...state,
                 products : [...action.payload.products]
             }
-       
+        case 'GET_PRODUCT':
+            return {
+                ...state,
+                product: action.payload.product
+            }
                          
     }
    /* if(action.type === 'DELETE_POST') {

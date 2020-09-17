@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CREATE_PRODUCT, GET_PRODUCTS } from './actionTypes';
+import { CREATE_PRODUCT, GET_PRODUCTS, GET_PRODUCT } from './actionTypes';
 
 export const createProduct = (product) => {
     return (dispatch) => {
@@ -33,15 +33,6 @@ export const getAllProducts = () => {
                 throw (err);
             })
     };
- /*   axios.get('/api/products')
-            .then((response) => {
-                this.setState({ products: response.data });
-                console.log('Data has been received!');
-            //    console.log(response.data);
-            })
-            .catch(() => {
-                console.log('Error retrieving data!');
-            });*/
 }
 
 export const getAllProductsSuccess = (products) => {
@@ -49,6 +40,27 @@ export const getAllProductsSuccess = (products) => {
         type: GET_PRODUCTS,
         payload: {
             products
+        }
+    };
+};
+
+export const getOneProduct = (id) => {
+    return (dispatch) => {
+        return axios.get(`/api/products/${id}`,)
+            .then(res => {
+                dispatch(getOneProductSuccess(res.data));
+            })
+            .catch(err => {
+                throw (err);
+            })
+    };
+}
+
+export const getOneProductSuccess = (product) => {
+    return {
+        type: GET_PRODUCT,
+        payload: {
+            product
         }
     };
 };

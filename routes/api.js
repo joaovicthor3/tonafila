@@ -11,8 +11,9 @@ router.get('/products', function(req, res, next){
 });
 
 router.get('/products/:id', function(req, res, next){
-  Product.findOne({ id : req.params.id }).then(function(products){
-    res.send(products);
+  console.log(req.params.id);
+  Product.findOne({ id : req.params.id }).then(function(product){
+    res.send(product);
   });
 
 });
