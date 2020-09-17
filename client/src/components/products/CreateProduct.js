@@ -29,10 +29,12 @@ class CreateProduct extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.handleChange(e);
+    const newId = Math.floor(Math.random()*5000); 
     this.setState({
-      id: Math.floor(Math.random()*500) 
+      id: newId
     });
     this.props.createProduct(this.state);
+    this.props.history.push('/');
   }
 
   checkForNum = (inputValue) => {
