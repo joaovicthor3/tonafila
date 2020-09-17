@@ -69,7 +69,7 @@ class Home extends Component {
     return (
       <div className="container">
         <h4 className="center">Home</h4>
-        <Products products={this.props.posts} deleteProduct={this.deleteProduct}/>
+        <Products products={this.props.product.posts} deleteProduct={this.deleteProduct}/>
         <AddProduct addProduct={this.addProduct}/>
       </div>
     );

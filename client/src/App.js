@@ -1,8 +1,13 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+import Navbar from './components/layout/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
+import ProductDetails from './components/products/ProductDetails'
+import CreateProduct from './components/products/CreateProduct'
+import Dashboard from './components/dashboard/Dashboard'
+import SignIn from './components/auth/SignIn'
+import SignUp from './components/auth/SignUp'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Post from './components/Post';
 // import logo from './logo.svg';
@@ -11,18 +16,6 @@ import './App.css';
 
 
 class App extends React.Component {
-  state = {
-    products: [{
-      name: '',
-      type: '',
-      amount: 0,
-      price: 0
-    }]
-  };
-
-
-
-
   render() {
 
     //JSX
@@ -31,10 +24,14 @@ class App extends React.Component {
         <div className="App">
           <Navbar />
           <Switch>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' component={Dashboard} />
             <Route path='/about' component={About} />
             <Route path='/contact' component={Contact} />
-            <Route path='/:post_id' component={Post} />
+            <Route path='/product/:id' component={ProductDetails} />
+            <Route path='/signin' component={SignIn} />
+            <Route path='/signup' component={SignUp} />
+            <Route path='/create' component={CreateProduct} />
+            <Route exact path='/:post_id' component={Post} />
           </Switch>
         </div>
       </BrowserRouter>

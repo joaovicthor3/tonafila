@@ -1,4 +1,6 @@
 import React, { Component} from 'react'
+import { connect } from 'react-redux'
+import { createProduct } from './store/actions/productActions'
 
 //funcional component (because of the state, data)
 class AddProduct extends Component {
@@ -24,7 +26,7 @@ class AddProduct extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.handleChange(e);
-    this.props.addProduct(this.state);
+    this.props.createProduct(this.state);
     this.setState({
       name: '',
       type: '',
@@ -84,4 +86,10 @@ class AddProduct extends Component {
   }
 }
 
-export default AddProduct;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createProduct: (product) => dispatch(createProduct(product))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddProduct);

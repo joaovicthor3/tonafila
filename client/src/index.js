@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from './reducers/rootReducer';
+import rootReducer from './store/reducers/rootReducer';
+import thunk from 'redux-thunk';
+import { createProduct, getAllProducts } from './store/actions/productActions'
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
+window.store = store;
+window.createProduct = createProduct;
 
 ReactDOM.render(
   <Provider store={store}>

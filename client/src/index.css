@@ -1,3 +1,6 @@
+html {
+  min-height: 100%;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,8 +8,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url(/img/wallpaper-2020-sept.jpg) no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+  background-color: #ab92c9;
+  min-height: 100%;
 }
-
+form{
+  padding: 20px;
+  margin-top: 60px;
+}
+form button, form h5{
+  margin: 20px 0;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
