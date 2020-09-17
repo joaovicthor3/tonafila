@@ -8,7 +8,7 @@ const ProductDetails = (props) => {
     
     if (id) {
         // If there's already a product in redux store and it's equal to the id passed
-        if (product && product.id == id) {
+        if (product && product.id === id) {
             console.log('got product and id.');
         } else { // Otherwise, get the task from db
             props.getOneProduct(id);

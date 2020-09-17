@@ -1,11 +1,12 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import { createProduct } from '../../store/actions/productActions'
+import uuid from 'uuid'
 
 //funcional component (because of the state, data)
 class CreateProduct extends Component {
   state = {
-    id: '',
+    id: uuid(),
     name: '',
     type: '',
     amount: '',
@@ -28,11 +29,7 @@ class CreateProduct extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    this.handleChange(e);
-    const newId = Math.floor(Math.random()*5000); 
-    this.setState({
-      id: newId
-    });
+    console.log('state', this.state)
     this.props.createProduct(this.state);
     this.props.history.push('/');
   }
@@ -94,7 +91,7 @@ class CreateProduct extends Component {
                 <label htmlFor="description">Descrição do Produto</label>
                 <textarea id="description" className="materialize-textarea" onChange={this.handleChange}></textarea>
             </div>
-            <button>Submit</button>
+            <button>Criar</button>
         </form>
       </div>
     )
