@@ -4,10 +4,11 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   name: String,
   email: String,
-  picture: String,
+  pictureURL: String,
   googleId: String,
   thumbnail: String,
-  accessToken: String
+  accessToken: String,
+  id: String
 });
 
 const User = mongoose.model('user', userSchema);
