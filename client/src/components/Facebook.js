@@ -10,7 +10,7 @@ class Facebook extends Component {
     return (
       <FacebookLogin
         appId="348880409482659"
-        autoLoad={true}
+        autoLoad={false}
         fields="name,email,picture"
         callback={this.responseFacebook}
       />
