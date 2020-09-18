@@ -1,6 +1,7 @@
 const express = require ('express');
 const router = express.Router();
 const Product = require('../models/product');
+const User = require('../models/user');
 
 // get a list of ninjas from the db
 router.get('/products', function(req, res, next){
@@ -35,18 +36,24 @@ router.put('/products/:id', function(req, res, next){
   }).catch(next);
 });
 
-// delete a ninja from the db
-// router.delete('/products/:id', function(req, res, next){
-//   console.log('help');
-//   Product.findByIdAndRemove({ id: req.params.id }).then(function(product){
-//       res.send(product);
-//   }).catch(next);
-// });
-
 router.delete('/products/:id', function(req, res, next){
   console.log('help');
   Product.findOneAndDelete({ id: req.params.id }).then(function(product){
       res.send(product);
   }).catch(next);
 });
+
+//----------
+
+router.post('/users', function(req, res, next){
+  User.create(req.body).then((user) => {
+      console.log(req.body, " saved!");
+      res.send(user);
+  }).catch(next);
+});
+
+
+
+
+
 module.exports = router;

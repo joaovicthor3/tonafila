@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 const initState = {
     product: null,
     products: []
@@ -23,7 +21,7 @@ const productReducer = (state = initState, action) => {
                 ...state,
                 product: action.payload.product
             }
-                         
+                    
     }
    /* if(action.type === 'DELETE_POST') {
         let newPosts = state.posts.filter(post => {

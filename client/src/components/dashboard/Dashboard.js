@@ -39,6 +39,6 @@ const mapDispatchToProps = (dispatch) => {
       getAllProducts: () => dispatch(getAllProducts()),
       createProduct: (product) => dispatch(createProduct(product))
     }
-  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
