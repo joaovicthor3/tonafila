@@ -12,10 +12,9 @@ class Facebook extends Component {
         pictureURL: ''
     }
     
-    responseFacebook(response) {
+    responseFacebook = (response) => {
         console.log(response)
         this.processResponse(response);
-        
     }
 
     processResponse = (response) => {
