@@ -42,13 +42,10 @@ class Facebook extends Component {
 
         auth ?
             facebookData = (
-                <div className="row">
-                    <div className="col s7 blue-text">
-                        <h5>Oi {user.name} !</h5>
-                        <h6>{user.email}</h6>
-                        <p>{user.id}</p>
-                    </div>
-                    <img className="col s5" src={user.pictureURL} alt="foto do usuário"/>
+                <div className="container">
+                    <h5>Oi {user.name} !</h5>
+                    <h6>{user.email}</h6>
+                    <p>{user.id}</p>
                 </div>
             ) : 
             facebookData = (
@@ -61,7 +58,7 @@ class Facebook extends Component {
             );
         
         return (
-            <div className="container">
+            <div className="center">
                 {facebookData}
             </div>
         )
