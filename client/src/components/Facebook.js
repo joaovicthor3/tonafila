@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { connect } from 'react-redux'
 import { createUser, getUser } from '../store/actions/authActions'
+import { withRouter } from 'react-router-dom'
 
 class Facebook extends Component {
     state = {
@@ -14,11 +15,7 @@ class Facebook extends Component {
     
 
     responseFacebook = (response) => {
-        console.log(response)
-        this.processResponse(response);
-    }
-
-    processResponse = (response) => {
+        console.log('the props ', this.props);
         if(response.status){
             console.log('deu ruim')
         } else {
@@ -29,53 +26,29 @@ class Facebook extends Component {
                 id: response.id,
                 pictureURL: response.picture.data.url,
             });
-            console.log(this.state);
             this.props.createUser(this.state);
+            this.props.history.push('/profile');
         }
     }
  
     render() {
-        let facebookData;
-        const { user } = this.props;
-        const { auth } = this.props;
-        console.log(this.props);
-
-        auth ?
-            facebookData = (
-                <div className="container">
-                    <h5>Oi {user.name} !</h5>
-                    <h6>{user.email}</h6>
-                    <p>{user.id}</p>
-                </div>
-            ) : 
-            facebookData = (
+        return (
+            <div className="center">
                 <FacebookLogin
                     appId="348880409482659"
                     autoLoad={false}
                     fields="name,email,picture"
                     callback={this.responseFacebook}
                 />
-            );
-        
-        return (
-            <div className="center">
-                {facebookData}
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        user: state.auth.user,
-        auth: state.auth.auth
-    }
-}
 const mapDispatchToProps = (dispatch) => {
     return {
-      getUser: (id) => dispatch(getUser(id)),
       createUser: (user) => dispatch(createUser(user))
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Facebook);
+export default withRouter(connect(null,mapDispatchToProps)(Facebook));

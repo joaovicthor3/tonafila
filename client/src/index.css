@@ -25,3 +25,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.size50{
+  height: 50px;
+  width: 50px;
+}

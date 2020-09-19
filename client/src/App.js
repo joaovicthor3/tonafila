@@ -10,6 +10,7 @@ import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Post from './components/Post';
+import Profile from './components/Profile'
 import { connect } from 'react-redux'
 import { getUser } from './store/actions/authActions'
 // import logo from './logo.svg';
@@ -41,6 +42,7 @@ class App extends React.Component {
             <Route path='/signin' component={SignIn} />
             <Route path='/signup' component={SignUp} />
             <Route path='/create' component={CreateProduct} />
+            <Route path='/profile' component={Profile} />
             <Route exact path='/:post_id' component={Post} />
           </Switch>
         </div>
