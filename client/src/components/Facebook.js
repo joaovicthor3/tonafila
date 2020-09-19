@@ -39,6 +39,8 @@ class Facebook extends Component {
                     autoLoad={false}
                     fields="name,email,picture"
                     callback={this.responseFacebook}
+                    disableMobileRedirect={true}
+                    cookie
                 />
             </div>
         )
