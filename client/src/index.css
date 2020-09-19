@@ -11,6 +11,7 @@ body {
   background: url(/img/wallpaper-2020-sept.jpg) no-repeat;
   background-size: 100%;
   background-position: bottom;
+  background-attachment: fixed;
   background-color: #ab92c9;
   min-height: 100%;
 }
@@ -27,7 +28,3 @@ code {
 }
 
 
-.size50{
-  height: 50px;
-  width: 50px;
-}
