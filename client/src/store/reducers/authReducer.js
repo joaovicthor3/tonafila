@@ -1,5 +1,6 @@
 const initState = {
-    user: null
+    user: null,
+    auth: false
 }
 
 const authReducer = (state = initState, action) => {
@@ -7,7 +8,8 @@ const authReducer = (state = initState, action) => {
         case 'CREATE_USER':
             return {
                 ...state,
-                user: action.payload.user
+                user: action.payload.user,
+                auth: true
             }
         case 'GET_USER':
             return {

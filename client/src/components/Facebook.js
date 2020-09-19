@@ -12,6 +12,7 @@ class Facebook extends Component {
         pictureURL: ''
     }
     
+
     responseFacebook = (response) => {
         console.log(response)
         this.processResponse(response);
@@ -26,7 +27,7 @@ class Facebook extends Component {
                 name: response.name,
                 email: response.email,
                 id: response.id,
-                pictureURL: response.picture.data.url
+                pictureURL: response.picture.data.url,
             });
             console.log(this.state);
             this.props.createUser(this.state);
@@ -34,16 +35,34 @@ class Facebook extends Component {
     }
  
     render() {
+        let facebookData;
         const { user } = this.props;
-        return (
-            <div className="container">
+        const { auth } = this.props;
+        console.log(this.props);
+
+        auth ?
+            facebookData = (
+                <div className="row">
+                    <div className="col s7 blue-text">
+                        <h5>Oi {user.name} !</h5>
+                        <h6>{user.email}</h6>
+                        <p>{user.id}</p>
+                    </div>
+                    <img className="col s5" src={user.pictureURL} alt="foto do usuário"/>
+                </div>
+            ) : 
+            facebookData = (
                 <FacebookLogin
                     appId="348880409482659"
                     autoLoad={false}
                     fields="name,email,picture"
                     callback={this.responseFacebook}
                 />
-                <div className="center blue-text">{ user }</div>
+            );
+        
+        return (
+            <div className="container">
+                {facebookData}
             </div>
         )
     }
@@ -51,7 +70,8 @@ class Facebook extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.auth.user
+        user: state.auth.user,
+        auth: state.auth.auth
     }
 }
 const mapDispatchToProps = (dispatch) => {

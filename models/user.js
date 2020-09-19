@@ -8,7 +8,8 @@ const userSchema = new Schema({
   googleId: String,
   thumbnail: String,
   accessToken: String,
-  id: String
+  id: String,
+  auth: Boolean
 });
 
 const User = mongoose.model('user', userSchema);
