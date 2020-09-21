@@ -19,16 +19,25 @@ import './App.css';
 
 
 class App extends React.Component {
+  componentDidMount(){
+    const cachedUser = localStorage.getItem("token");
+    
+    if(cachedUser) {
+      //console.log('got cached user: ', cachedUser);
+      this.props.getUser(cachedUser);
+    } // else console.log('no cached user.');
+  }
   render() {
     const { auth } = this.props;
     const { user } = this.props;
-    let userAuth = {
-      user,
-      auth
-    }
-    console.log('auth: ', auth, 'user: ', user);
-    console.log(userAuth);
-    auth ? userAuth.user = user : userAuth.user = null; 
+    
+    let userAuth = { user, auth }
+    auth ? userAuth.user = user : userAuth.user = null;
+    //console.log('auth: ', auth, 'user: ', user);
+    //console.log(userAuth);
+    
+     
+    
     //JSX
     return(
       <BrowserRouter>
@@ -79,7 +88,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUser: (id) => dispatch(getUser(id)),
+    getUser: (accessToken) => dispatch(getUser(accessToken)),
   }
 }
 

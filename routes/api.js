@@ -46,14 +46,36 @@ router.delete('/products/:id', function(req, res, next){
 //----------
 
 router.post('/users', function(req, res, next){
-  User.create(req.body).then((user) => {
-      console.log(req.body, " saved!");
+  User.findOne({ id: req.body.id}, (err, user) => {
+    if (user) {
+      console.log('user found!: ', user);
       res.send(user);
-  }).catch(next);
+    }
+    else {
+      console.log('user not found.');
+      User.create(req.body).then((user) => {
+        console.log(req.body, " saved!");
+        res.send(user);
+      }).catch(next);
+    }
+  }).catch(next);    
 });
 
+router.get('/users/:accessToken', function(req, res){
+  //console.log(req.params.accessToken);
+  User.findOne({ accessToken : req.params.accessToken }).then(function(user){
+    res.send(user);
+  });
+});
 
-
+router.get('/users/:id', function(req, res){
+  //console.log(req.params.accessToken);
+  User.findOneAndUpdate({ id : req.params.id }, req.body).then(function(user){
+    User.findOne({id: req.params.id}).then(user => {
+      res.send(user);
+    });    
+  });
+});
 
 
 module.exports = router;

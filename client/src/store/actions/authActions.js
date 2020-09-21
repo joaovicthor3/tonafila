@@ -6,6 +6,7 @@ export const createUser = (user) => {
         // make async call to database
         return axios.post('/api/users', user)
         .then(res => {
+            localStorage.setItem("token", res.data.accessToken);
             dispatch(createUserSuccess(res.data));
         })
         .catch(err => {
@@ -23,9 +24,9 @@ export const createUserSuccess = (user) => {
     };
 };
 
-export const getUser = (id) => {
+export const getUser = (accessToken) => {
     return (dispatch) => {
-        return axios.get(`/api/users/${id}`,)
+        return axios.get(`/api/users/${accessToken}`)
             .then(res => {
                 dispatch(getUserSuccess(res.data));
             })
@@ -43,3 +44,15 @@ export const getUserSuccess = (user) => {
         }
     };
 };
+/*
+export const getOrCreateUser = (id) => {
+    return (dispatch) => {
+        return axios.get(`/api/users/${id}`)
+            .then(res => {
+                dispatch(getUserSuccess(res.data));
+            })
+            .catch(err => {
+                throw (err);
+            })
+    };
+}*/

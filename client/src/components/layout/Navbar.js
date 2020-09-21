@@ -13,7 +13,7 @@ const Navbar = (props) => {
   )
   
   let links;
-  console.log('userAuth is ', props.userAuth);
+  //console.log('userAuth is ', props.userAuth);
   props.userAuth.auth ? links = (<SignedInLinks user={props.userAuth.user} />) : links = (<SignedOutLinks />)
   return (
     <nav className="nav-wrapper grey darken-3">
