@@ -15,10 +15,12 @@ class Facebook extends Component {
     
 
     responseFacebook = (response) => {
+        
         console.log('the props ', this.props);
         if(response.status){
             console.log('deu ruim')
         } else {
+            console.log(response)
             this.setState({
                 accessToken: response.accessToken,
                 name: response.name,
@@ -37,7 +39,7 @@ class Facebook extends Component {
                 <FacebookLogin
                     appId="348880409482659"
                     autoLoad={false}
-                    fields="name,email,picture"
+                    fields="name,email,picture.type(large)"
                     callback={this.responseFacebook}
                     disableMobileRedirect={true}
                     cookie

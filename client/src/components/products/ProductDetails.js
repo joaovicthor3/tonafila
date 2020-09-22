@@ -27,7 +27,7 @@ const ProductDetails = (props) => {
                         <p>{product.description}</p>
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
-                        <div>Posted by JV</div>
+                        <div>Posted by {product.authorName}</div>
                         <div>16th September 12am</div>
                     </div>
                 </div>

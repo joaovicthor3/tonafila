@@ -11,7 +11,9 @@ class CreateProduct extends Component {
     type: '',
     amount: '',
     price: '',
-    description: ''
+    description: '',
+    authorName: this.props.user.name,
+    authorId: this.props.user.id
   }
 
   handleChange = (e) => {
@@ -29,7 +31,8 @@ class CreateProduct extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('state', this.state)
+    const { user } = this.props;
+    console.log('state: ', this.state)
     this.props.createProduct(this.state);
     this.props.history.push('/');
   }
@@ -58,6 +61,7 @@ class CreateProduct extends Component {
                     id="name"
                     onChange={this.handleChange}
                     value={this.state.name}
+                    required
                 />
             </div>
             <div className="input-field">
@@ -67,6 +71,7 @@ class CreateProduct extends Component {
                     id="type"
                     onChange={this.handleChange}
                     value={this.state.type}
+                    required
                 />
             </div>
             <div className="input-field">
@@ -76,6 +81,7 @@ class CreateProduct extends Component {
                     id="amount"
                     onChange={this.handleChange}
                     value={this.state.amount}
+                    required
                 />
             </div>   
             <div className="input-field">
@@ -85,6 +91,7 @@ class CreateProduct extends Component {
                     id="price"
                     onChange={this.handleChange}
                     value={this.state.price}
+                    required
                 />
             </div>
             <div className="input-field">
@@ -97,11 +104,16 @@ class CreateProduct extends Component {
     )
   }
 }
-
+const mapStateToProps = state => {
+  return {
+      user: state.auth.user,
+      auth: state.auth.auth
+  }
+}
 const mapDispatchToProps = (dispatch) => {
   return {
     createProduct: (product) => dispatch(createProduct(product))
   }
 }
 
-export default connect(null, mapDispatchToProps)(CreateProduct);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateProduct);

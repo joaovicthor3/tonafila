@@ -3,8 +3,11 @@ import Notifications from './Notifications'
 import ProductList from '../products/ProductList'
 import { connect } from 'react-redux'
 import { createProduct, getAllProducts } from '../../store/actions/productActions'
+import { Redirect } from 'react-router-dom'
+
 
 class Dashboard extends Component {
+
     componentDidMount() {
         this.props.getAllProducts();
         
@@ -12,6 +15,9 @@ class Dashboard extends Component {
 
     render(){
         const { products } = this.props;
+      //  const { auth } = this.props;
+       // if(!auth) return <Redirect to='/signin' />
+       // m if(!auth) return <Redirect to='/signin' />
         //console.log(products)
         return (
             <div className="dashboard container">
@@ -31,7 +37,8 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
     return {
-        products: state.product.products
+        products: state.product.products,
+        auth: state.auth.auth
     }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -7,7 +7,9 @@ const ProductSchema = new Schema({
   type: String,
   amount: Number,
   price: Number,
-  id: String
+  id: String,
+  authorName: String,
+  authorId: String
 });
 
 const Product = mongoose.model('product', ProductSchema);
