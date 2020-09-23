@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CREATE_USER, GET_USER } from './actionTypes';
+import { CREATE_USER, GET_USER, LOG_OUT } from './actionTypes';
 
 export const createUser = (user) => {
     return (dispatch) => {
@@ -44,6 +44,14 @@ export const getUserSuccess = (user) => {
         }
     };
 };
+
+export const logUserOut = () => {
+    localStorage.removeItem("token");
+    return {
+        type: LOG_OUT,
+        payload: null
+    }
+}
 /*
 export const getOrCreateUser = (id) => {
     return (dispatch) => {

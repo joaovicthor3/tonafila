@@ -5,7 +5,6 @@ const Notifications = () => {
     return (
         <div>
             <p>Notificações</p>
-            <div className="center login-box"><Facebook /></div>
         </div>
     )
 }

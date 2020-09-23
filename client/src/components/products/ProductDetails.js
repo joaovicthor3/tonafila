@@ -1,21 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getOneProduct } from '../../store/actions/productActions';
+import moment from 'moment'
+import 'moment/locale/pt-br'
 
 const ProductDetails = (props) => {
     const id = props.match.params.id;
     const { product } = props;
-    
-    if (id) {
-        // If there's already a product in redux store and it's equal to the id passed
-        if (product && product.id === id) {
-            console.log('got product and id.');
-        } else { // Otherwise, get the task from db
-            props.getOneProduct(id);
-        }
-    }
 
-    if (product) {
+    if (product && product.id === id) {
+        let date = moment(product.createdAt).calendar();
         return (
             <div className="container section product-details">
                 <div className="card z-depth-0">
@@ -27,13 +21,14 @@ const ProductDetails = (props) => {
                         <p>{product.description}</p>
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
-                        <div>Posted by {product.authorName}</div>
-                        <div>16th September 12am</div>
+                        <div>Criado por {product.authorName}</div>
+                        <div>{date}</div>
                     </div>
                 </div>
             </div>
         )
     } else {
+        props.getOneProduct(id);
         return (
             <div className="container center">
                 <p>Carregando produto...</p>

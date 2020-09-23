@@ -4,7 +4,10 @@ import { CREATE_PRODUCT, GET_PRODUCTS, GET_PRODUCT } from './actionTypes';
 export const createProduct = (product) => {
     return (dispatch) => {
         // make async call to database
-        return axios.post('/api/products', product)
+        return axios.post('/api/products', {
+            ...product,
+            createdAt: new Date()
+        })
         .then(res => {
             dispatch(createProductSuccess(res.data));
         })

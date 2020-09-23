@@ -24,21 +24,16 @@ class App extends React.Component {
     const cachedUser = localStorage.getItem("token");
     
     if(cachedUser) {
-      //console.log('got cached user: ', cachedUser);
+      console.log('got cached user: ', cachedUser);
       this.props.getUser(cachedUser);
     } // else console.log('no cached user.');
   }
   render() {
-    const { auth } = this.props;
-    const { user } = this.props;
+    const { auth, user } = this.props;
     
     let userAuth = { user, auth }
-    auth ? userAuth.user = user : userAuth.user = null;
-    //console.log('auth: ', auth, 'user: ', user);
-    //console.log(userAuth);
-    
-     
-    
+    auth ? userAuth.user = user : userAuth.user = null; 
+
     //JSX
     return(
       <BrowserRouter>

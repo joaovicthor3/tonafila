@@ -9,7 +9,8 @@ const ProductSchema = new Schema({
   price: Number,
   id: String,
   authorName: String,
-  authorId: String
+  authorId: String,
+  createdAt: Date
 });
 
 const Product = mongoose.model('product', ProductSchema);
