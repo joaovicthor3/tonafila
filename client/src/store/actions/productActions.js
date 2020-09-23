@@ -2,11 +2,14 @@ import axios from 'axios'
 import { CREATE_PRODUCT, GET_PRODUCTS, GET_PRODUCT } from './actionTypes';
 
 export const createProduct = (product) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         // make async call to database
+        const user = getState().auth.user
         return axios.post('/api/products', {
             ...product,
-            createdAt: new Date()
+            createdAt: new Date(),
+            authorName: user.name,
+            authorId: user.id
         })
         .then(res => {
             dispatch(createProductSuccess(res.data));

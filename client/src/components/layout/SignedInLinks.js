@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink, withRouter } from 'react-router-dom';
+import {  NavLink, withRouter } from 'react-router-dom';
 import { logUserOut } from '../../store/actions/authActions';
 import { connect } from 'react-redux'
 
@@ -8,7 +8,7 @@ const SignedInLinks = (props) => {
   return (
     <ul className="right">
         <li><NavLink to='/create'>Novo Produto</NavLink></li>
-        <li><Link onClick={props.logUserOut}>Sair</Link></li>
+        <li><a onClick={props.logUserOut}>Sair</a></li>
         <li><NavLink to='/profile' className='btn btn-floating pink lighten-1'><img className="responsive-img" src={user.pictureURL} alt="foto do usuário"/></NavLink></li>
     </ul>
   )

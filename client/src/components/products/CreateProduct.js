@@ -2,6 +2,7 @@ import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import { createProduct } from '../../store/actions/productActions'
 import uuid from 'uuid'
+import { Redirect } from 'react-router-dom'
 
 //funcional component (because of the state, data)
 class CreateProduct extends Component {
@@ -12,8 +13,8 @@ class CreateProduct extends Component {
     amount: '',
     price: '',
     description: '',
-    authorName: this.props.user.name,
-    authorId: this.props.user.id
+    authorName: '',
+    authorId: ''
   }
 
   handleChange = (e) => {
@@ -31,8 +32,6 @@ class CreateProduct extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    const { user } = this.props;
-    console.log('state: ', this.state)
     this.props.createProduct(this.state);
     this.props.history.push('/');
   }
@@ -50,6 +49,10 @@ class CreateProduct extends Component {
     }
   }
   render(){
+    const { auth, user } = this.props;
+    if (!auth) return (
+      <div className="center"><h6>Faça login antes de criar um produto</h6></div>
+    )
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
