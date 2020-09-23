@@ -20,13 +20,16 @@ import './App.css';
 
 
 class App extends React.Component {
-  componentDidMount(){
+  constructor(props) {
+    super(props);
     const cachedUser = localStorage.getItem("token");
     
     if(cachedUser) {
       console.log('got cached user: ', cachedUser);
       this.props.getUser(cachedUser);
     } // else console.log('no cached user.');
+  }
+  componentDidMount(){
   }
   render() {
     const { auth, user } = this.props;

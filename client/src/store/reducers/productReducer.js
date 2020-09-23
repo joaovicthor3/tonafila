@@ -1,6 +1,7 @@
 const initState = {
     product: null,
-    products: []
+    products: [],
+    userProducts: []
 }
 
 const productReducer = (state = initState, action) => {
@@ -20,6 +21,11 @@ const productReducer = (state = initState, action) => {
             return {
                 ...state,
                 product: action.payload.product
+            }
+        case 'GET_USER_PRODUCTS':
+            return {
+                ...state,
+                userProducts : [...action.payload.products]
             }
                     
     }

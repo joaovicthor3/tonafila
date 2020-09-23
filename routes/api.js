@@ -8,15 +8,19 @@ router.get('/products', function(req, res, next){
   Product.find({}).then(function(products){
     res.send(products);
   });
-
 });
 
 router.get('/products/:id', function(req, res, next){
-  console.log(req.params.id);
+  console.log('id: ', req.params.id);
   Product.findOne({ id : req.params.id }).then(function(product){
     res.send(product);
   });
+});
 
+router.get('/products/', (req, res) => {
+  Product.find({ authorId: req.params.authorId }).then(function(products){
+    res.send(products);
+  });
 });
 
 // add a new ninja to the db
