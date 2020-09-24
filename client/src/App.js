@@ -14,6 +14,7 @@ import Profile from './components/Profile'
 import { connect } from 'react-redux'
 import { getUser } from './store/actions/authActions'
 import { Redirect } from 'react-router-dom'
+
 // import logo from './logo.svg';
 // import './App.css';
 import './App.css';
@@ -29,8 +30,7 @@ class App extends React.Component {
       this.props.getUser(cachedUser);
     } // else console.log('no cached user.');
   }
-  componentDidMount(){
-  }
+
   render() {
     const { auth, user } = this.props;
     
