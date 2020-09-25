@@ -37,7 +37,7 @@ class Facebook extends Component {
         return (
             <div className="center">
                 <FacebookLogin
-                    appId="348880409482659"
+                    appId={process.env.REACT_APP_FACEBOOK_APP_ID}
                     autoLoad={false}
                     fields="name,email,picture.type(large)"
                     callback={this.responseFacebook}
